@@ -22,6 +22,7 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  margin: 0;
 }
 
 .mobile {
@@ -32,12 +33,24 @@ body {
   background-color: var(--form_background);
   border-radius: 16px;
   display: grid;
-  grid-template-columns: 460px repeat(auto-fill, 100px) 300px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-areas: "left right";
   padding: 16px;
 }
 
 .left_side {
   padding: 2rem;
+  grid-area: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.right_side {
+  grid-area: right;
+}
+
+.right_side img {
+  width: 100%;
 }
 
 .left_side .checkbox_container {
@@ -106,6 +119,14 @@ form button {
   color: white;
   font-family: site-font;
   font-size: 14px;
+  border: none;
+  transition: 300ms all;
+}
+
+button:hover {
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+  color: var(--text_color);
 }
 
 form input:invalid {
@@ -121,6 +142,7 @@ form input:invalid {
     padding: 0;
     margin: 0;
     overflow: scroll;
+    background-color: none;
   }
 
   .form_container {
@@ -128,11 +150,13 @@ form input:invalid {
     border-radius: 0;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas: "right" "left";
+    grid-template-rows: 1fr;
     padding: 16px;
     height: 100vh;
   }
   .left_side {
-    order: 2;
+    padding: 0;
   }
 
   .right_side .desktop {
